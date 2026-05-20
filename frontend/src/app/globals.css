@@ -1,0 +1,780 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties — UUI Token System ──────────────────────────────── */
+/*
+ * Semantic tokens mapped from Untitled UI design system.
+ * Cambiar la clase .dark en <html> cambia el tema sin tocar los componentes.
+ */
+
+:root {
+  /* ── Background surfaces ─────────────────────────────── */
+  --color-bg-primary:           #FFFFFF;
+  --color-bg-primary_alt:       #FFFFFF;
+  --color-bg-secondary:         #F9FAFB;
+  --color-bg-secondary_alt:     #F9FAFB;
+  --color-bg-primary_hover:     #F9FAFB;
+  --color-bg-secondary_hover:   #F2F4F7;
+  --color-bg-quaternary:        #E4E7EC;
+  --color-bg-brand-solid:       #7F56D9;
+  --color-bg-brand-solid_hover: #6941C6;
+  --color-bg-brand-primary:     #F9F5FF;
+  --color-bg-brand-section:     #F4EBFF;
+  --color-text-brand-primary:   #6941C6;
+
+  /* ── Text ────────────────────────────────────────────── */
+  --color-text-primary:         #101828;
+  --color-text-secondary:       #344054;
+  --color-text-secondary_hover: #1D2939;
+  --color-text-tertiary:        #475467;
+  --color-text-tertiary_hover:  #344054;
+  --color-text-quaternary:      #667085;
+  --color-text-placeholder:     #667085;
+  --color-text-brand-secondary: #6941C6;
+
+  /* ── Foreground / icons ──────────────────────────────── */
+  --color-fg-primary:           #101828;
+  --color-fg-secondary:         #344054;
+  --color-fg-tertiary:          #475467;
+  --color-fg-quaternary:        #98A2B3;
+  --color-fg-quaternary_hover:  #667085;
+  --color-fg-brand-primary:     #7F56D9;
+  --color-fg-brand-secondary:   #9E77ED;
+  --color-fg-success-secondary: #17B26A;
+  --color-fg-error-primary:     #D92D20;
+
+  /* ── Borders ─────────────────────────────────────────── */
+  --color-border-primary:       #D0D5DD;
+  --color-border-secondary:     #E4E7EC;
+  --color-border-secondary_alt: rgba(0, 0, 0, 0.08);
+  --color-border-tertiary:      #F2F4F7;
+  --color-border-brand:         #9E77ED;
+  --color-border-brand_alt:     #7F56D9;
+
+  /* ── Shadows — exact UUI values ─────────────────────── */
+  --shadow-xs:   0px 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm:   0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md:   0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg:   0px 12px 16px -4px rgba(0, 0, 0, 0.08), 0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 2px 2px -1px rgba(0, 0, 0, 0.04);
+  --shadow-xl:   0px 20px 24px -4px rgba(0, 0, 0, 0.08), 0px 8px 8px -4px rgba(0, 0, 0, 0.03), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl:  0px 24px 48px -12px rgba(0, 0, 0, 0.18), 0px 4px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-skeuomorphic: 0px 0px 0px 1px rgba(0, 0, 0, 0.18) inset, 0px -2px 0px 0px rgba(0, 0, 0, 0.05) inset;
+  --shadow-xs-skeuomorphic: var(--shadow-skeuomorphic), var(--shadow-xs);
+
+  /* ── Utility badge colors — light ───────────────────── */
+  --color-utility-green-50:  #ECFDF3;
+  --color-utility-green-200: #ABEFC6;
+  --color-utility-green-500: #17B26A;
+  --color-utility-green-700: #067647;
+
+  --color-utility-red-50:  #FEF3F2;
+  --color-utility-red-200: #FECDCA;
+  --color-utility-red-500: #F04438;
+  --color-utility-red-700: #B42318;
+
+  --color-utility-yellow-50:  #FFFAEB;
+  --color-utility-yellow-200: #FEDF89;
+  --color-utility-yellow-500: #F79009;
+  --color-utility-yellow-700: #B54708;
+
+  --color-utility-brand-50:  #F9F5FF;
+  --color-utility-brand-200: #E9D7FE;
+  --color-utility-brand-500: #9E77ED;
+  --color-utility-brand-700: #6941C6;
+
+  --color-utility-neutral-50:  #F9FAFB;
+  --color-utility-neutral-200: #E4E7EC;
+  --color-utility-neutral-500: #667085;
+  --color-utility-neutral-700: #344054;
+
+  --color-utility-blue-50:  #EFF8FF;
+  --color-utility-blue-200: #B2DDFF;
+  --color-utility-blue-500: #2E90FA;
+  --color-utility-blue-700: #175CD3;
+
+  --color-utility-purple-50:  #F4F3FF;
+  --color-utility-purple-200: #C4B5FD;
+  --color-utility-purple-500: #7C3AED;
+  --color-utility-purple-700: #5B21B6;
+
+  /* ── Kubik-specific surfaces ─────────────────────────── */
+  --surface-sidebar: #FFFFFF;
+  --surface-panel:   #F9FAFB;
+  --surface-active:  #F2F4F7;
+  --map-bg:          #EAE4D9;
+
+  --shadow-topbar:    0px 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-glow-kubik: 0 0 0 1px rgba(127, 86, 217, 0.3), 0 4px 12px rgba(127, 86, 217, 0.25);
+
+  /* ── Motion ──────────────────────────────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-snappy:    cubic-bezier(0.2, 0, 0, 1);
+  --duration-micro: 80ms;
+  --duration-fast:  120ms;
+  --duration-base:  180ms;
+  --duration-slow:  280ms;
+  --duration-enter: 220ms;
+
+  --scrollbar-thumb:       #D0D5DD;
+  --scrollbar-thumb-hover: #98A2B3;
+}
+
+.dark {
+  /* ── Background surfaces ─────────────────────────────── */
+  --color-bg-primary:           #0C111D;
+  --color-bg-primary_alt:       #161B26;
+  --color-bg-secondary:         #101828;
+  --color-bg-secondary_alt:     #0C111D;
+  --color-bg-primary_hover:     #1D2939;
+  --color-bg-secondary_hover:   #1D2939;
+  --color-bg-quaternary:        #344054;
+  --color-bg-brand-solid:       #7F56D9;
+  --color-bg-brand-solid_hover: #9E77ED;
+  --color-bg-brand-primary:     #2C1C5F;
+  --color-bg-brand-section:     #42307D;
+  --color-text-brand-primary:   #D6BBFB;
+
+  /* ── Text ────────────────────────────────────────────── */
+  --color-text-primary:         #F9FAFB;
+  --color-text-secondary:       #D0D5DD;
+  --color-text-secondary_hover: #E4E7EC;
+  --color-text-tertiary:        #98A2B3;
+  --color-text-tertiary_hover:  #D0D5DD;
+  --color-text-quaternary:      #98A2B3;
+  --color-text-placeholder:     #667085;
+  --color-text-brand-secondary: #D0D5DD;
+
+  /* ── Foreground / icons ──────────────────────────────── */
+  --color-fg-primary:           #FFFFFF;
+  --color-fg-secondary:         #D0D5DD;
+  --color-fg-tertiary:          #98A2B3;
+  --color-fg-quaternary:        #475467;
+  --color-fg-quaternary_hover:  #667085;
+  --color-fg-brand-primary:     #9E77ED;
+  --color-fg-brand-secondary:   #9E77ED;
+  --color-fg-success-secondary: #47CD89;
+  --color-fg-error-primary:     #F97066;
+
+  /* ── Borders ─────────────────────────────────────────── */
+  --color-border-primary:       #344054;
+  --color-border-secondary:     #1D2939;
+  --color-border-secondary_alt: rgba(255, 255, 255, 0.06);
+  --color-border-tertiary:      #1D2939;
+  --color-border-brand:         #B692F6;
+  --color-border-brand_alt:     #344054;
+
+  /* ── Utility badge colors — dark ────────────────────── */
+  --color-utility-green-50:  #053321;
+  --color-utility-green-200: #085D3A;
+  --color-utility-green-700: #47CD89;
+
+  --color-utility-red-50:  #55160C;
+  --color-utility-red-200: #912018;
+  --color-utility-red-700: #FDA29B;
+
+  --color-utility-yellow-50:  #422006;
+  --color-utility-yellow-200: #713B12;
+  --color-utility-yellow-700: #FEC84B;
+
+  --color-utility-brand-50:  #2C1C5F;
+  --color-utility-brand-200: #53389E;
+  --color-utility-brand-700: #D6BBFB;
+
+  --color-utility-neutral-50:  #101828;
+  --color-utility-neutral-200: #344054;
+  --color-utility-neutral-700: #D0D5DD;
+
+  /* ── Kubik-specific surfaces ─────────────────────────── */
+  --surface-sidebar: #0C111D;
+  --surface-panel:   #101828;
+  --surface-active:  #1D2939;
+  --map-bg:          #1C1B26;
+
+  --shadow-topbar:    0px 1px 0px rgba(255, 255, 255, 0.04);
+  --shadow-glow-kubik: 0 0 0 1px rgba(158, 119, 237, 0.4), 0 4px 12px rgba(127, 86, 217, 0.35);
+
+  --scrollbar-thumb:       #344054;
+  --scrollbar-thumb-hover: #475467;
+}
+
+/* ── Legacy surface aliases — transition bridge ──────────────────────────────── */
+:root {
+  --surface-base:         var(--color-bg-primary);
+  --surface-card:         var(--color-bg-primary);
+  --surface-border:       var(--color-border-secondary);
+  --surface-border-strong:var(--color-border-primary);
+  --surface-hover:        var(--color-bg-primary_hover);
+  --text-primary:         var(--color-text-primary);
+  --text-secondary:       var(--color-text-secondary);
+  --text-tertiary:        var(--color-text-tertiary);
+  --text-muted:           var(--color-text-quaternary);
+  --text-faint:           var(--color-fg-quaternary);
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Scrollbar ─────────────────────────────────────────── */
+  ::-webkit-scrollbar          { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track    { background: transparent; }
+  ::-webkit-scrollbar-thumb    { background: var(--scrollbar-thumb); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+  *                            { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent; }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────────────── */
+
+@layer utilities {
+
+  /* ── Texto semántico (no depende del modo) ─────────────── */
+  .text-primary   { color: var(--color-text-primary); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-muted     { color: var(--color-text-quaternary); }
+  .text-faint     { color: var(--color-fg-quaternary); }
+
+  /* ── Patrones de fondo para el canvas de oficina ───────── */
+
+  /* Puntos — color adaptado al tema */
+  .grid-dots {
+    background-image: radial-gradient(
+      circle,
+      rgba(127, 86, 217, 0.10) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* Grid — para el canvas espacial */
+  .grid-lines {
+    background-image:
+      linear-gradient(var(--color-border-secondary) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border-secondary) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+  }
+
+  /* Isométrico sutil para la oficina virtual */
+  .grid-iso {
+    background-image:
+      linear-gradient(30deg,  var(--color-border-secondary) 1px, transparent 1px),
+      linear-gradient(150deg, var(--color-border-secondary) 1px, transparent 1px),
+      linear-gradient(90deg,  var(--color-border-secondary) 0.5px, transparent 0.5px);
+    background-size: 32px 32px;
+    opacity: 0.35;
+  }
+
+  /* ── Glass tiers ────────────────────────────────────────── */
+
+  /* Tier 1 — panels, sidebars flotantes */
+  .glass-sm {
+    background: rgba(26,23,20,0.85);
+    backdrop-filter: blur(10px) saturate(1.3);
+    -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  }
+  html:not(.dark) .glass-sm {
+    background: rgba(255,255,255,0.85);
+  }
+
+  /* Tier 2 — dropdowns, menus flotantes */
+  .glass-md {
+    background: rgba(26,23,20,0.90);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  }
+  html:not(.dark) .glass-md {
+    background: rgba(255,255,255,0.90);
+  }
+
+  /* Tier 3 — overlays, modales */
+  .glass-lg {
+    background: rgba(28,25,23,0.94);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  }
+  html:not(.dark) .glass-lg {
+    background: rgba(255,255,255,0.94);
+  }
+
+  /* Warm glass — map overlays (always warm-tinted) */
+  .glass-warm {
+    background: rgba(26,23,20,0.82);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  }
+  html:not(.dark) .glass-warm {
+    background: rgba(234,228,217,0.88);
+  }
+
+  /* Alias legacy — no rompemos componentes existentes */
+  .glass       { background: rgba(26,23,20,0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .glass-dark  { background: rgba(28,25,23,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .glass-light { background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* ── Elevation system ───────────────────────────────────── */
+  .elevation-0 { box-shadow: none; }
+  .elevation-1 { box-shadow: var(--shadow-sm); }
+  .elevation-2 { box-shadow: var(--shadow-md); }
+  .elevation-3 { box-shadow: var(--shadow-lg); }
+  .elevation-4 { box-shadow: var(--shadow-xl); }
+
+  .shadow-dropdown  { box-shadow: var(--shadow-lg); }
+  .shadow-topbar    { box-shadow: var(--shadow-topbar); }
+  .shadow-panel     { box-shadow: var(--shadow-md); }
+
+  /* ── Glow ───────────────────────────────────────────────── */
+  .glow-kubik    { box-shadow: var(--shadow-glow-kubik); }
+  .glow-kubik-sm { box-shadow: 0 0 12px rgba(127,86,217,0.14); }
+
+  /* ── Transición de tema ─────────────────────────────────── */
+  .theme-transition {
+    transition:
+      background-color 0.28s var(--ease-smooth),
+      border-color 0.28s var(--ease-smooth),
+      color 0.22s var(--ease-smooth),
+      box-shadow 0.28s var(--ease-smooth);
+  }
+
+  /* ── Motion utilities ───────────────────────────────────── */
+  .transition-fast   { transition-duration: var(--duration-fast);  transition-timing-function: var(--ease-smooth); }
+  .transition-base   { transition-duration: var(--duration-base);  transition-timing-function: var(--ease-smooth); }
+  .transition-enter  { transition-duration: var(--duration-enter); transition-timing-function: var(--ease-out-expo); }
+  .transition-spring { transition-duration: var(--duration-base);  transition-timing-function: var(--ease-spring); }
+
+  /* ── Pixel art rendering hint ────────────────────────── */
+  .pixel-art {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  /* ── Animaciones del sistema de avatares ─────────────── */
+
+  @keyframes avatarWalk {
+    0%, 100% { transform: translateY(0px);  }
+    30%       { transform: translateY(-5px) scaleX(1.04) scaleY(0.96); }
+    60%       { transform: translateY(-4px); }
+  }
+
+  @keyframes avatarIdle {
+    0%, 100% { transform: translateY(0px)   scaleX(1)    scaleY(1);    }
+    50%       { transform: translateY(-2px) scaleX(1.02) scaleY(0.99); }
+  }
+
+  @keyframes npcFloat {
+    0%, 100% { transform: translateY(0px);  }
+    50%       { transform: translateY(-5px); }
+  }
+
+  @keyframes talkingPulse {
+    0%, 100% { opacity: 1;   transform: scale(1);   }
+    50%       { opacity: 0.5; transform: scale(0.9); }
+  }
+
+  /* ── Presence system ─────────────────────────────────── */
+
+  @keyframes typingDot {
+    0%, 55%, 100% { opacity: 0.2; transform: translateY(0px);  }
+    27%            { opacity: 1;   transform: translateY(-3px); }
+  }
+
+  @keyframes speakRing {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    100% { transform: scale(2.6); opacity: 0;   }
+  }
+
+  @keyframes awayFloat {
+    0%, 100% { transform: translateY(0px);  opacity: 0.7; }
+    50%       { transform: translateY(-5px); opacity: 1;   }
+  }
+
+  /* ── Room ambient glow — por zona ───────────────────────── */
+
+  @keyframes glowLobby {
+    0%, 100% { box-shadow: 0 0 0px  rgba(127, 86, 217, 0);    }
+    50%       { box-shadow: 0 0 28px rgba(127, 86, 217, 0.22); }
+  }
+  @keyframes glowFocus {
+    0%, 100% { box-shadow: 0 0 0px  rgba(52, 211, 153, 0);    }
+    50%       { box-shadow: 0 0 28px rgba(52, 211, 153, 0.22); }
+  }
+  @keyframes glowCafeteria {
+    0%, 100% { box-shadow: 0 0 0px  rgba(251, 191, 36, 0);    }
+    50%       { box-shadow: 0 0 28px rgba(251, 191, 36, 0.22); }
+  }
+  @keyframes glowMeeting {
+    0%, 100% { box-shadow: 0 0 0px  rgba(251, 113, 133, 0);    }
+    50%       { box-shadow: 0 0 36px rgba(251, 113, 133, 0.38); }
+  }
+  @keyframes glowCollab {
+    0%, 100% { box-shadow: 0 0 0px  rgba(167, 139, 250, 0);    }
+    50%       { box-shadow: 0 0 28px rgba(167, 139, 250, 0.22); }
+  }
+  @keyframes glowSupport {
+    0%, 100% { box-shadow: 0 0 0px  rgba(56, 189, 248, 0);    }
+    50%       { box-shadow: 0 0 28px rgba(56, 189, 248, 0.22); }
+  }
+
+  @keyframes meetingRingPulse {
+    0%   { transform: scale(1);     opacity: 0.55; }
+    60%  { transform: scale(1.015); opacity: 0.22; }
+    100% { transform: scale(1);     opacity: 0.55; }
+  }
+
+  @keyframes subtlePulse {
+    0%, 100% { opacity: 1;   }
+    50%       { opacity: 0.5; }
+  }
+
+  /* ── Toasts y notificaciones ────────────────────────── */
+  @keyframes presenceToastIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0);    }
+  }
+
+  /* ── Peer avatar — lifecycle animations ──────────────── */
+
+  @keyframes peerEnter {
+    0%   { opacity: 0; transform: scale(0.4) translateY(8px); }
+    65%  { opacity: 1; transform: scale(1.06) translateY(-3px); }
+    85%  { transform: scale(0.97) translateY(1px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes peerLeave {
+    0%   { opacity: 1;   transform: scale(1)    translateY(0);     }
+    40%  { opacity: 0.6; transform: scale(1.05) translateY(-3px);  }
+    100% { opacity: 0;   transform: scale(0.3)  translateY(-12px); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+
+  /* ── Zona de oficina — borde-corredor ──────────────────── */
+  .office-corridor-h {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border-secondary),
+      transparent
+    );
+  }
+  .office-corridor-v {
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-border-secondary),
+      transparent
+    );
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     CALM BEAN AVATAR SYSTEM
+  ══════════════════════════════════════════════════════════ */
+
+  .avatar-svg .backpack-l { display: none;  }
+  .avatar-svg .backpack-r { display: block; }
+
+  .avatar-svg[data-dir="left"] .backpack-l { display: block; }
+  .avatar-svg[data-dir="left"] .backpack-r { display: none;  }
+
+  .avatar-svg[data-moving="true"] {
+    animation: blobSquash 0.28s ease-in-out infinite;
+  }
+
+  @keyframes blobSquash {
+    0%, 100% { transform: scaleX(1)    scaleY(1);    }
+    25%       { transform: scaleX(0.95) scaleY(1.05); }
+    75%       { transform: scaleX(1.05) scaleY(0.96); }
+  }
+
+  .avatar-svg[data-moving="true"] text {
+    opacity: 0.8;
+  }
+
+  /* ── Integración de avatares — dark mode ────────────────────────────────────
+     En modo oscuro el suelo es muy oscuro y la sombra negra del avatar
+     desaparece, haciendo que "floten". Solución: drop-shadow cálido + glow
+     de suelo que simula el avatar proyectando luz (como una pantalla encendida).
+  ══════════════════════════════════════════════════════════════════════════════ */
+
+  /* Light mode — sombra clásica oscura, suficiente contraste */
+  html:not(.dark) .avatar-svg {
+    filter: drop-shadow(0 4px 3px rgba(0,0,0,0.22))
+            drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+  }
+
+  /* Dark mode — sombra cálida + glow color suave que "ancla" el avatar al suelo */
+  html.dark .avatar-svg {
+    filter: drop-shadow(0 5px 4px rgba(0,0,0,0.55))
+            drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+  }
+
+  /* Ground glow ellipse — el avatar "proyecta" luz ámbar calida al suelo */
+  /* Solo visible en dark mode via la clase html.dark */
+  html.dark .avatar-ground-glow {
+    opacity: 1;
+  }
+  html:not(.dark) .avatar-ground-glow {
+    opacity: 0;
+  }
+
+  @keyframes furnitureReveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes roomAmbient {
+    0%, 100% { opacity: 1;    }
+    50%       { opacity: 0.75; }
+  }
+
+  .room-node-live {
+    box-shadow:
+      0 0 0 1px rgba(127,86,217,0.20),
+      0 4px 24px rgba(127,86,217,0.12),
+      0 2px 8px rgba(0,0,0,0.35);
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     LIVING OFFICE — Ambient prop animations
+  ══════════════════════════════════════════════════════════ */
+
+  @keyframes monitorPulse {
+    0%, 100% { opacity: 0.45; }
+    50%       { opacity: 0.82; }
+  }
+  .anim-monitor {
+    animation: monitorPulse var(--anim-dur, 4s) ease-in-out infinite;
+  }
+
+  @keyframes ledBlink {
+    0%, 88%, 100% { opacity: 0.9;  }
+    90%, 98%      { opacity: 0.12; }
+  }
+  .anim-led-ok   { animation: ledBlink 3.2s ease-in-out infinite; }
+  .anim-led-warn { animation: ledBlink 1.8s ease-in-out infinite; }
+
+  @keyframes steamRise {
+    0%   { transform: translateY(0px)   scaleX(1);   opacity: 0.38; }
+    70%  { transform: translateY(-14px) scaleX(1.4); opacity: 0.16; }
+    100% { transform: translateY(-22px) scaleX(1.8); opacity: 0;    }
+  }
+  .anim-steam {
+    animation:        steamRise 2.4s ease-out infinite;
+    transform-box:    fill-box;
+    transform-origin: 50% 100%;
+  }
+
+  @keyframes plantSway {
+    0%, 100% { transform: rotate(0deg);    }
+    25%       { transform: rotate(1.4deg);  }
+    75%       { transform: rotate(-1.1deg); }
+  }
+  .anim-plant {
+    animation:        plantSway 6s ease-in-out infinite;
+    transform-box:    fill-box;
+    transform-origin: 50% 100%;
+  }
+
+  @keyframes bubbleRise {
+    0%   { transform: translateY(0px)   translateX(0px); opacity: 0.55; }
+    100% { transform: translateY(-28px) translateX(3px); opacity: 0;    }
+  }
+  .anim-bubble { animation: bubbleRise var(--bub-dur, 3s) ease-in-out infinite; }
+
+  @keyframes roomBreath {
+    0%, 100% { filter: brightness(1);    }
+    50%       { filter: brightness(1.55); }
+  }
+
+  @keyframes vendingGlow {
+    0%, 100% { opacity: 0.32; }
+    50%       { opacity: 0.62; }
+  }
+  .anim-vending { animation: vendingGlow 4s ease-in-out infinite; }
+
+  /* ══════════════════════════════════════════════════════════
+     SPATIAL SOCIAL — Status aura & reaction animations
+  ══════════════════════════════════════════════════════════ */
+
+  .status-aura {
+    animation: auraBreath var(--aura-dur, 3s) ease-in-out infinite;
+  }
+  @keyframes auraBreath {
+    0%, 100% { opacity: 0.55; }
+    50%       { opacity: 1;   }
+  }
+
+  @keyframes reactionPop {
+    0%   { opacity: 0; transform: translateX(-50%) scale(0.5)  translateY(0px);   }
+    18%  { opacity: 1; transform: translateX(-50%) scale(1.25) translateY(-4px);  }
+    75%  { opacity: 1; transform: translateX(-50%) scale(1)    translateY(-10px); }
+    100% { opacity: 0; transform: translateX(-50%) scale(0.9)  translateY(-18px); }
+  }
+
+  @keyframes proximityIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0px); }
+  }
+
+  @keyframes huddlePing {
+    0%   { transform: scale(1);   opacity: 0.55; }
+    100% { transform: scale(1.9); opacity: 0;    }
+  }
+
+  /* ── Spatial Interaction System (Fase A) ──────────────── */
+
+  @keyframes spatialRingPulse {
+    0%, 100% { transform: scale(1);    opacity: 0.7; }
+    50%       { transform: scale(1.18); opacity: 0.3; }
+  }
+
+  @keyframes spatialGlowFade {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1.0; }
+  }
+
+  @keyframes spatialPromptIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.9); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1);   }
+  }
+
+  @keyframes spatialCardIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0px)  scale(1);    }
+  }
+
+  /* ── Knock / "Tocar puerta" animations ──────────────────────────────────── */
+
+  /* Badge del KnockIndicator aparece con bounce en el avatar destino */
+  @keyframes knockBounceIn {
+    0%   { opacity: 0; transform: scale(0) rotate(-25deg); }
+    60%  { opacity: 1; transform: scale(1.15) rotate(8deg); }
+    80%  { transform: scale(0.95) rotate(-4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  /* Pulso del badge amber mientras está activo */
+  @keyframes knockActivePulse {
+    0%, 100% { box-shadow: 0 0 0 2px var(--color-bg-primary,#fff), 0 0 10px rgba(245,158,11,0.55); }
+    50%       { box-shadow: 0 0 0 2px var(--color-bg-primary,#fff), 0 0 18px rgba(245,158,11,0.85); }
+  }
+
+  /* Ondas de impacto radial del KnockIndicator — se expanden y desvanecen */
+  @keyframes knockRipple {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.75; }
+    100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0;    }
+  }
+
+  /* Pulso continuo del badge amber mientras el knock está activo */
+  @keyframes knockPulse {
+    0%, 100% { box-shadow: 0 0 0 2.5px var(--color-bg-primary, #fff), 0 0 16px rgba(245,158,11,0.75); }
+    50%       { box-shadow: 0 0 0 2.5px var(--color-bg-primary, #fff), 0 0 26px rgba(245,158,11,0.95); }
+  }
+
+  /* ── Voice / LiveKit animations (Fase B) ─────────────────────────────────── */
+
+  /* Pulso del anillo del botón de mic cuando el player está hablando */
+  @keyframes voiceSpeakPulse {
+    0%   { transform: scale(1);    opacity: 0.9; }
+    50%  { transform: scale(1.22); opacity: 0.3; }
+    100% { transform: scale(1);    opacity: 0.9; }
+  }
+
+  /* Pulso suave del dot de conexión activa */
+  @keyframes voiceConnectedGlow {
+    0%, 100% { opacity: 1;   box-shadow: 0 0 6px rgba(74,222,128,0.65); }
+    50%       { opacity: 0.6; box-shadow: 0 0 12px rgba(74,222,128,0.35); }
+  }
+
+  /* Entrada de la VoiceBar al conectarse */
+  @keyframes voiceBarIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0px)  scale(1);   }
+  }
+
+  /* ── Social Layer animations (Fase B) ────────────────────────────────────── */
+
+  /* Toast de notificación social — slide-in desde arriba, centrado */
+  @keyframes socialNotifIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-12px) scale(0.92); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0px)   scale(1);    }
+  }
+
+  /* Incoming call card — spring desde arriba */
+  @keyframes incomingCallIn {
+    from { opacity: 0; transform: translateY(-24px) scale(0.88); }
+    to   { opacity: 1; transform: translateY(0px)   scale(1);    }
+  }
+
+  /* Anillo pulsante en el avatar de llamada entrante */
+  @keyframes callRingPulse {
+    0%   { transform: scale(0.9);  opacity: 0.85; }
+    50%  { transform: scale(1.35); opacity: 0.1;  }
+    100% { transform: scale(0.9);  opacity: 0;    }
+  }
+
+  /* Chat panel — sube desde la esquina inferior derecha */
+  @keyframes chatPanelIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0px)  scale(1);    }
+  }
+
+  /* ZoneCard — slide desde la derecha */
+  @keyframes zoneCardIn {
+    from { opacity: 0; transform: translateX(12px) scale(0.97); }
+    to   { opacity: 1; transform: translateX(0px)  scale(1);    }
+  }
+
+  /* ── Call Bubble animations ──────────────────────────────────────────────── */
+
+  /* Entrada: spring desde abajo-izquierda */
+  @keyframes callBubbleIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0px)   scale(1);   }
+  }
+
+  /* Anillos de aura alrededor del avatar durante llamada activa — más lento que callRingPulse */
+  @keyframes callAuraPulse {
+    0%   { transform: scale(0.85); opacity: 0.75; }
+    60%  { transform: scale(1.40); opacity: 0.08; }
+    100% { transform: scale(0.85); opacity: 0;    }
+  }
+
+  /* Punto verde pulsante — indicador "en llamada" en el header de la burbuja */
+  @keyframes callActiveDot {
+    0%, 100% { opacity: 1;   box-shadow: 0 0 4px rgba(34,197,94,0.60); }
+    50%       { opacity: 0.5; box-shadow: 0 0 10px rgba(34,197,94,0.30); }
+  }
+
+  /* ── Video Call Window ───────────────────────────────────────────────────── */
+
+  /* Entrada de la ventana de video — spring desde abajo-derecha */
+  @keyframes videoWindowIn {
+    from { opacity: 0; transform: translate(0, 0) translateY(20px) scale(0.90); }
+    to   { opacity: 1; transform: translate(0, 0) translateY(0px)  scale(1);    }
+  }
+}

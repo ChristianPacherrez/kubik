@@ -1,0 +1,13 @@
+{
+  "name": "kubik",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "./scripts/dev.sh",
+    "setup": "./scripts/setup.sh",
+    "frontend": "pnpm --filter kubik-frontend dev",
+    "backend": "pnpm --filter kubik-backend dev",
+    "install:all": "pnpm install"
+  }
+}

@@ -1,0 +1,81 @@
+// Prisma schema para Kubik
+// Documentación: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Roles dentro de la plataforma
+// HOST es el dueño de la organización, ADMIN puede gestionar usuarios, COLLABORATOR es el rol base
+enum UserRole {
+  HOST
+  ADMIN
+  COLLABORATOR
+}
+
+// Estado de presencia del usuario en la oficina
+// OFFLINE se setea cuando el socket se desconecta
+enum UserStatus {
+  AVAILABLE
+  BUSY
+  IN_MEETING
+  AWAY
+  OFFLINE
+}
+
+// Tipo de sala: afecta comportamiento (MEETING tiene capacidad estricta, FOCUS silencia notificaciones, etc.)
+enum RoomType {
+  OPEN
+  MEETING
+  FOCUS
+  LOUNGE
+}
+
+model User {
+  id         String     @id @default(cuid())
+  clerkId    String     @unique // ID del usuario en Clerk, usado para correlacionar auth con datos
+  email      String     @unique
+  name       String
+  avatarUrl  String?
+  role       UserRole   @default(COLLABORATOR)
+  status     UserStatus @default(OFFLINE)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  // Relación con salas en las que el usuario está actualmente
+  userRooms  UserRoom[]
+
+  @@map("users")
+}
+
+model Room {
+  id          String    @id @default(cuid())
+  name        String
+  maxCapacity Int       @default(10)
+  type        RoomType  @default(OPEN)
+  createdAt   DateTime  @default(now())
+
+  // Usuarios actualmente en esta sala
+  userRooms   UserRoom[]
+
+  @@map("rooms")
+}
+
+// Tabla de unión entre Users y Rooms
+// Registra en qué sala está cada usuario en un momento dado
+model UserRoom {
+  userId    String
+  roomId    String
+  joinedAt  DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roomId]) // Un usuario solo puede estar en una sala a la vez (primary key compuesta)
+  @@map("user_rooms")
+}
