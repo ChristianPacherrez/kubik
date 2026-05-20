@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   // Exponer variables de entorno al cliente (solo las NEXT_PUBLIC_*)
   // Las privadas (sin prefijo) solo están disponibles en el servidor
@@ -19,6 +21,14 @@ const nextConfig = {
         hostname: 'images.clerk.dev',
       },
     ],
+  },
+
+  // Alias @ → src/ explícito para webpack
+  // Necesario para que el bundler resuelva correctamente @/store/*, @/components/*, etc.
+  // tsconfig paths solos no son suficientes en todos los entornos de build.
+  webpack(config) {
+    config.resolve.alias['@'] = path.join(__dirname, 'src')
+    return config
   },
 }
 
