@@ -12,8 +12,8 @@ export default clerkMiddleware((auth, req) => {
   const { userId } = auth()
 
   if (!userId) {
-    const url = new URL('/sign-in', req.url)
-    return Response.redirect(url)
+    const signInUrl = new URL('/sign-in', req.url)
+    return Response.redirect(signInUrl)
   }
 })
 
