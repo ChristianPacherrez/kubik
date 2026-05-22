@@ -13,8 +13,5 @@
     "frontend": "pnpm --filter kubik-frontend dev",
     "backend": "pnpm --filter kubik-backend dev",
     "install:all": "pnpm install"
-  },
-  "dependencies": {
-    "zustand": "^5.0.13"
   }
 }
