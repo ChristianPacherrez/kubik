@@ -1,5 +1,5 @@
 {
   "framework": "nextjs",
-  "installCommand": "corepack enable && pnpm install",
-  "buildCommand": "pnpm --filter kubik-frontend build"
+  "installCommand": "npm i -g pnpm@9.15.0 && pnpm install",
+  "buildCommand": "pnpm --filter frontend build"
 }
